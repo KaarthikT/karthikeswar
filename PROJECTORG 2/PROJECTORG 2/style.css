@@ -1,0 +1,987 @@
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+:root {
+    --color: #fff;
+    --colorText: red;
+    --homeImage: url('/bg.jpg');
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track{
+    background: #999;
+}
+
+::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(128, 9, 9);
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    height: 100%;
+}
+
+.flexBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+/* ------------- nav style ------------ */
+
+nav.navBar {
+    position: fixed;
+    width: fit-content;
+    left: 50%;
+    top: 15px;
+    transform: translate(-50%);
+    z-index: 99;
+}
+
+.navList {
+    list-style: none;
+    height: 55px;
+    border-radius: 30px;
+    background: rgb(0 0 0 / 28%);
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    padding-inline: 20px;
+    position: relative;
+    &:before {  
+        content: '';
+        left: var(--left);
+        position: absolute;
+        width: var(--width);
+        height: 40px;
+        background: var(--colorText);
+        pointer-events: none;
+        border-radius: 20px;
+        transition: left .2s cubic-bezier(0.5, 1, .5, 1.1), width .2s ease;
+    }
+}
+
+.navList li a {
+    font-size: 1.2em;
+    text-transform: capitalize;
+    padding: 0 10px;
+    color: var(--color);
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+}
+
+.navBar .mobileBtn {
+    width: 40px;
+    height: 40px;
+    background: red;
+    position: absolute;
+    z-index: 999;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+    display: none;
+    
+}
+.navBar .mobileBtn span {
+    width: 60%;
+    background: #ffff;
+    pointer-events: none;
+    height: 3px;
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: left .3s ease, transform .3s ease, top .3s ease;
+    &:nth-child(1) {
+        top: calc(50% - 7px);
+    }
+    &:nth-child(3) {
+        top: calc(50% + 7px);
+    }
+}
+
+.navBar.active .mobileBtn span{
+    &:nth-child(1) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    &:nth-child(2){
+        left: -100%;
+    }
+    &:nth-child(3) {
+        top: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+
+/* ---------------- home section style ---------------- */
+/* --- Variables (Assuming these are defined elsewhere in your CSS) --- */
+
+:root {
+    --color: rgb(255, 255, 255); /* Example default text color */
+    --colorText: #c70808; /* Example accent color (like gold) */
+    --homeImage: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/DSC03336.jpg');
+   
+}
+
+.home {
+    background: var(--homeImage) no-repeat right;
+    background-size: cover;
+    background-position: center;
+    color: var(--color);
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex; /* Assuming flexBox handles this */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    position: relative; /* For absolute positioning of pageDown */
+    overflow: hidden; /* Prevent content overflow issues */
+}
+
+.home .content {
+    flex-direction: column;
+    display: flex; /* Ensure content itself is a flex container */
+    align-items: center; /* Center items within content div */
+    justify-content: center;
+    text-align: center; /* Center text within content div */
+    padding: 20px; /* Add some general padding */
+    z-index: 99;
+}
+
+.content h4.name {
+    font-size: 2.2em; /* Smaller base font size for mobile */
+    margin-bottom: 20px; /* Reduced margin */
+    white-space: nowrap; /* Prevent line breaks for the name if possible */
+    overflow: hidden; /* Hide overflow if nowrap is too long */
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+}
+
+.content h3 {
+    font-size: clamp(2em, 8vw, 4em); /* Adjusted clamp for mobile focus */
+    margin-bottom: 25px; /* Reduced margin */
+    line-height: 1.2; /* Improve readability */
+}
+
+.contents {
+    font-size: 1.2em; /* Smaller base font for mobile */
+    position: relative;
+    padding-right: 5px; /* Space for the animated line */
+}
+
+.contents:before {
+    content: '';
+    position: absolute;
+    width: 3px; /* Slightly thinner line */
+    height: 1.5em; /* Shorter line relative to font size */
+    background: var(--colorText);
+    right: 0px; /* Adjust position */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    animation: animate 1s ease infinite;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.social {
+    margin-top: 40px; /* Reduced margin */
+    display: flex;
+    gap: 15px; /* Reduced gap */
+    flex-wrap: wrap; /* Allow social icons to wrap if too many */
+    justify-content: center; /* Center social icons */
+}
+
+.social a {
+    width: 45px; /* Smaller social icons for mobile */
+    height: 45px;
+    background: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px; /* Smaller icon font size */
+    color: var(--color);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition */
+}
+
+.social a:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+
+.pageDown {
+    position: absolute;
+    bottom: 30px; /* Closer to the bottom on mobile */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for centering */
+    z-index: 2; /* Ensure it's above other content */
+}
+
+.pageDown button {
+    width: 45px; /* Smaller button for mobile */
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1); /* Slightly more opaque background */
+    color: #fff;
+    font-size: 18px; /* Smaller icon font size */
+    backdrop-filter: blur(8px); /* Slightly less blur */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.pageDown button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(5px); /* Slight downward push on hover */
+}
+
+.pageDown button a {
+    color: inherit; /* Inherit color from button */
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.pageDown button i { /* Target the icon directly */
+    animation: scrolldown 1.7s ease infinite;
+    display: block; /* Ensure it respects margin-block */
+}
+
+
+@keyframes scrolldown {
+    0% {
+        margin-block: 0 10px; /* Reduced animation range */
+        opacity: 0.7;
+    }
+    50% {
+        margin-block: 0;
+        opacity: 1;
+    }
+    100% {
+        margin-block: 10px 0; /* Reduced animation range */
+        opacity: 0.7;
+    }
+}
+
+
+/* --- Media Queries for Larger Screens --- */
+
+/* Tablet & Smaller Desktop Screens (e.g., iPads in landscape, small laptops) */
+@media (max-width: 768px) {
+    
+:root {
+    --color: rgb(255, 255, 255); /* Example default text color */
+    --colorText: #c70808; /* Example accent color (like gold) */
+
+}
+.home .content {
+  
+    background: var(--homeImage1) no-repeat right;
+    background-position: top;
+    padding: 20px;
+    background-size: cover;
+    color: var(--color);
+    }
+
+.content h4.name {
+        font-size:clamp(1.2em, 2em, 4em);
+        margin-bottom: 30px;
+    }
+
+.content h3 {
+        font-size: clamp(3em, 6vw, 5em); /* Scale up for tablets */
+        margin-bottom: 35px;
+    }
+        
+.contents {
+        font-size: 1.5em;
+        padding-right: 20px;
+    }
+
+ .contents:before {
+        width: 4px;
+        height: 1.8em;
+        right: -5px; /* Adjust if needed */
+    }
+
+.social {
+        margin-top: 60px;
+        gap: 20px;
+    }
+
+.social a {
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+    }
+
+.pageDown {
+        right: 50px; /* Move slightly from absolute center */
+        bottom: 50px;
+        left: unset; /* Remove left property from smaller screens */
+        transform: unset; /* Remove transform from smaller screens */
+    }
+
+    .pageDown button {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    @keyframes scrolldown {
+        0% {
+            margin-block: 0 12px;
+        }
+        50% {
+            margin-block: 0;
+        }
+        100% {
+            margin-block: 12px 0;
+        }
+    }
+}
+
+
+/* --------------- ABOUT US SECTION STYLE -------------- */
+
+.aboutContents, .careerContainer, .victoryContents, .certificate {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 30px
+}
+
+.titleCard {
+    margin-block: 40px 30px;
+    text-align: center;
+    border-bottom: 1px solid #000;
+}
+
+.titleCard h3 {
+    text-transform: uppercase;
+    font-size: 2em;
+    padding: 10px;
+}
+
+.aboutCard {
+    display: flex;
+    position: relative;
+    gap: 50px;
+    height: 400px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.aboutCard.even {
+    flex-direction: row-reverse;
+}
+
+.aboutCard .image {
+    width: 350px;
+    flex-shrink: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.aboutCard .image img {
+    border-radius: 20px;
+}
+
+.aboutCard .details {
+    line-height: 40px;
+    text-align: left;
+    font-size: 22px;
+     margin-bottom: 25px;
+}
+
+
+    .aboutCard .details h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 25;
+            font-weight: 700;
+            color: #333;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            line-height: 1.2;
+            /* text-align: center; Removed from h2 itself, apply to parent if needed */
+        }
+
+        .aboutCard .details h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease-out;
+        }
+
+        .aboutCard .details h2:hover::after {
+            width: 100%;
+        }
+
+/* -------------- CAREER PAGE STYLE --------- */
+
+section#career {
+    overflow: hidden;
+}
+
+.careerContent {
+    width: 100%;
+    height: 80vh;
+    position: relative;
+    overflow: hidden; /* Ensure no overflow from the cards */
+}
+
+.careerContent .careerCard {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+}
+
+.careerContent .cardContent {
+    position: absolute;
+    left: 60%;
+    top: 70%;
+    width: 160px;
+    height: 250px;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: red;
+    transition: .5s;
+    background-position: center;
+
+     
+}
+.cardsNav {
+    position: absolute; /* Positioning the buttons absolutely */
+    bottom: 20px; /* Adjust this value to position the buttons vertically */
+    left: 50%; /* Center the buttons horizontally */
+    transform: translateX(-50%); /* Centering adjustment */
+    display: flex; /* Use flexbox for alignment */
+    gap: 20px; /* Space between buttons */
+    z-index: 10; /* Ensure buttons are above other content */
+}
+
+.cardsNav button {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding for better click area */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth background change */
+}
+
+.cardsNav button:hover {
+    background-color: rgba(255, 255, 255, 1); /* Fully opaque on hover */
+}
+
+.careerContent .cardContent:nth-child(1), .careerContent .cardContent:nth-child(2) {
+    left: 0;
+    top: 0;
+    transform: translate(0, 0);
+    width: 100%;
+    background-color: blue;
+    height: 100%;
+}
+
+.careerContent .cardContent:nth-child(3) {
+    left: calc(60% + 180px);
+}
+
+.careerContent .cardContent:nth-child(4) {
+    left: calc(60% + 380px);
+}
+
+.careerContent .cardContent:nth-child(5) {
+    left: calc(60% + 580px);
+}
+
+.careerContent .cardContent:nth-child(n+6) {
+    left: calc(60% + 780px);
+    visibility: hidden;
+}
+
+.careerContent .cardContent .cardDetails {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding-inline: 100px;
+    color: var(--color);
+}
+
+.careerContent .cardTitle {
+    font-size: 4em;
+    opacity: 0;
+    animation: animateCard 1s ease-in-out .5s 1 forwards;
+}
+
+.careerContent .subTitle {
+    font-size: 2em;
+    margin-top: 30px;
+    opacity: 0;
+    animation: animateCard 1s ease-in-out .5s 1 forwards;
+}
+
+.careerContent .cardText {
+    font-size: 1.5em;
+    margin-top: 50px;
+    opacity: 0;
+    animation: animateCard 1s ease-in-out .5s 1 forwards;
+}
+
+.careerContent .cardContent:nth-child(2) .cardDetails {
+    display: flex;
+}
+
+.careerContent .cardsNav {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.careerContent .cardsNav button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+@keyframes animateCard {
+    from {
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+/* --- Base Styles (Mobile-First) --- */
+
+/* General Section Container Styles */
+.aboutContents,
+.careerContainer,
+.victoryContents,
+.certificate {
+    width: 90%; /* Start with a higher percentage for better mobile use */
+    max-width: 1200px; /* Add a max-width to prevent stretching on very large screens */
+    margin: 0 auto;
+    padding-top: 20px; /* Reduced padding for mobile */
+}
+
+/* Title Card Styles */
+.titleCard {
+    margin-block: 30px 20px; /* Reduced margins for mobile */
+    text-align: center;
+    border-bottom: 1px solid #ccc; /* Lighter border for a cleaner look */
+    padding-bottom: 10px; /* Add some padding below the border */
+}
+
+.titleCard h3 {
+    text-transform: uppercase;
+    font-size: 1.6em; /* Smaller font size for mobile */
+    padding: 5px; /* Reduced padding */
+    color: #333; /* Default text color for titles */
+}
+
+/* About Card (Image and Details) Styles */
+.aboutCard {
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    position: relative;
+    gap: 20px; /* Reduced gap for mobile */
+    height: auto; /* Allow height to adjust based on content */
+    overflow: hidden; /* Keep overflow hidden for any internal elements */
+    margin-bottom: 30px;
+    align-items: center; /* Center items when stacked */
+    text-align: center; /* Center text for stacked layout */
+}
+
+.aboutCard.even {
+    flex-direction: column; /* Override row-reverse for mobile, keep as column */
+    
+
+   
+}
+.aboutCard.even.image img {
+    width: 100%; /* Image fills its container */
+     /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    border-radius: 10px; /* Slightly smaller border-radius for mobile */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.aboutCard .image {
+    width: 100%; /* Image takes full width on mobile */
+    max-width: 300px; /* Cap image width to prevent it from being too big */
+    flex-shrink: 0;
+    overflow: hidden;
+    height: auto; /* Allow image height to scale */
+    margin-bottom: 10px; /* Space between image and text */
+    
+}
+
+.aboutCard .image img {
+    width: 100%; /* Image fills its container */
+     /* Maintain aspect ratio */
+    display: block; /* Remove extra space below image */
+    border-radius: 10px; /* Slightly smaller border-radius for mobile */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.aboutCard .details {
+    line-height: 1.6; /* Use unitless line-height for better scaling */
+    text-align:justify ; /* Center text on mobile */
+    font-size: 1.5em; /* Base font size for mobile */
+    padding: 0 10px; /* Add horizontal padding to text for readability */
+    color: #555; /* Default text color for paragraphs */
+}
+
+/* --- Media Queries --- */
+
+/* Tablet & Smaller Desktop Screens (e.g., iPads in landscape, small laptops) */
+@media (min-width: 768px) {
+    .aboutContents,
+    .careerContainer,
+    .victoryContents,
+    .certificate {
+        width: 85%; /* Slightly wider for tablets */
+        padding-top: 40px;
+    }
+
+    .titleCard {
+        margin-block: 50px 40px;
+    }
+
+    .titleCard h3 {
+        font-size: 2.2em; /* Slightly larger title */
+    }
+
+    .aboutCard {
+        flex-direction: row; /* Revert to row layout */
+        gap: 40px; /* Adjusted gap */
+        height: 100px; /* Slightly smaller height, but still fixed */
+        margin-bottom: 40px;
+        align-items: center; /* Vertically align items */
+        text-align: left; /* Align text to left in row layout */
+    }
+
+    .aboutCard.even {
+        flex-direction: row-reverse; /* Apply row-reverse for 'even' cards */
+    }
+
+    .aboutCard .image {
+        width: 280px; /* Adjusted image width for tablets */
+        max-width: none; /* Remove max-width override */
+        margin-bottom: 0; /* No bottom margin in row layout */
+    }
+
+    .aboutCard .image img {
+        border-radius: 15px; /* Slightly larger border-radius */
+    }
+
+    .aboutCard .details {
+        line-height: 1.7; /* Adjusted line height */
+        font-size: 1.1em; /* Adjusted font size */
+        text-align: justify; /* Revert to justify text */
+        padding: 0; /* Remove horizontal padding */
+    }
+}
+
+/* Larger Desktop Screens */
+@media (min-width: 1024px) {
+    .aboutContents,
+    .careerContainer,
+    .victoryContents,
+    .certificate {
+        width: 80%; /* Original width */
+        padding-top: 50px;
+    }
+
+    .titleCard {
+        margin-block: 40px 30px; /* Original margins */
+    }
+
+    .titleCard h3 {
+        font-size: 2.5em; /* Larger title font size */
+    }
+
+    .aboutCard {
+        gap: 50px; /* Original gap */
+        height: 400px; /* Original height */
+        margin-bottom: 30px; /* Original margin */
+    }
+
+    .aboutCard .image {
+        width: 350px; /* Original image width */
+    }
+
+    .aboutCard .image img {
+        border-radius: 20px; /* Original border-radius */
+    }
+
+    .aboutCard .details {
+        line-height: 1.8; /* Adjusted to be slightly more open for readability */
+        font-size: 1.2em; /* Original font size, using em for better scaling */
+    }
+}
+
+/* --------------- VICTORIES ------------------- */
+
+.victories {
+    margin: 0 auto;
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.victoryData {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    transition: transform .5s ease;
+    transform-style: preserve-3d;
+    text-align: center;
+}
+.victoryData h3{
+    visibility: hidden;
+}
+
+.victoryList:hover .victoryData {
+    transform: rotateY(180deg);
+}
+
+.victoryList:nth-child(1) {
+    grid-row-start: 0;
+    grid-row-end: 3;
+}
+
+.front-card-1 {
+    background: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/FB_IMG_1617936075192.jpg') no-repeat center;
+    background-size: cover;
+    border-radius: 10px;
+   
+}
+.front-card-2{
+    background: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/DocScanner 4 June 2024 4-11 pm_page-0001.jpg') no-repeat top;
+    background-size: cover;
+    border-radius: 10px;
+}
+.front-card-3{
+    background: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/DocScanner 4 June 2024 4-11 pm_page-0002.jpg') no-repeat top;
+    background-size: cover;
+    border-radius: 10px;
+  
+}
+.front-card-4{
+    background: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/DocScanner 4 June 2024 4-11 pm_page-0005.jpg') no-repeat top;
+    background-size: cover;
+    border-radius: 10px;
+    
+}
+.front-card-5{
+    background: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/image00007 (2).jpg') no-repeat top;
+    background-size: cover;
+    border-radius: 10px;
+  
+}
+.front-card-6{
+    background: url('https://karthikeswar.s3.ap-south-1.amazonaws.com/assert/FB_IMG_1700533879638.jpg') no-repeat top;
+    background-size: cover;
+    border-radius: 10px;
+     
+}
+.back-card h4{
+     color: rgb(43, 68, 6);
+   font-size: 20px;
+   justify-content: center;
+   font-family: "canva" ;
+   text-align: center;
+   margin-top: 350px;
+
+}
+.front-card-1, .back-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    font-size: 18px;
+     background-color: burlywood;
+   
+  
+}
+.front-card-2, .back-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  
+}
+.front-card-3, .back-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+   
+}
+.front-card-4, .back-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+ 
+}
+.front-card-5, .back-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+   
+}
+
+.front-card-6, .back-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+   
+}
+
+.back-card {
+    transform: rotateY(180deg);
+    border-radius: 10px;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+h1 {
+  color: coral;
+  text-align: center;
+  font-size: 25px;
+  padding-bottom: 30px;
+}
+.grid-container { 
+  columns: 5 400px;
+  column-gap: 1.5rem;
+  width: 90%;
+  margin: 0 auto;
+  height: 100%;
+  div {
+    width: 150px;
+    margin: 0 1.5rem 1.5rem 0;
+    display: inline-block;
+    width: 100%;
+    
+    border: solid 2px black;
+    padding: 5px;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    transition: all .25s ease-in-out;
+    &:hover img {
+      filter: grayscale(0);
+    }
+    &:hover {
+      border-color: coral;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(100%);
+      border-radius: 5px;
+      transition: all .25s ease-in-out;
+    }
+    p {
+      margin: 5px 0;
+      padding: 0;
+      text-align: center;
+      font-style: italic;
+    }
+  }
+}
+
+
+

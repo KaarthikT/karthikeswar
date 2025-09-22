@@ -1,0 +1,389 @@
+   /* certificate */
+
+
+   .certificates {
+       max-width: 1000px;
+       margin: 40px auto;
+       background: white;
+       border-radius: 12px;
+       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+   }
+   mark{
+    background-color: #f7f7f7;
+    font-size: 20px;
+    font-weight: 500;
+    
+   }
+
+   .titleCard {
+       text-align: center;
+       margin-bottom: 30px;
+       position: relative;
+   }
+
+   .titleCard::after {
+       content: '';
+       display: block;
+       width: 80px;
+       height: 4px;
+       background: linear-gradient(90deg, #3498db, #9b59b6);
+       margin: 15px auto 0;
+       border-radius: 2px;
+   }
+
+   .title {
+       font-size: 32px;
+       color: #2c3e50;
+       margin: 0;
+       font-weight: 700;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+   }
+
+   .certificateSlider {
+       position: relative;
+       overflow: hidden;
+       border-radius: 10px;
+       padding: 20px 0;
+   }
+
+   .certificateSlides {
+       display: flex;
+       transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+
+   .certificateSlide {
+       min-width: 100%;
+       box-sizing: border-box;
+       padding: 15px;
+       text-align: center;
+       transition: all 0.3s ease;
+   }
+
+   .certificateSlide:hover {
+       transform: translateY(-10px);
+   }
+
+   .certificateSlide img {
+       width: 100%;
+       max-width: 750px;
+       height: auto;
+       border-radius: 8px;
+       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+       transition: all 0.3s ease;
+       border: 1px solid rgba(0, 0, 0, 0.1);
+   }
+
+   .certificateSlide:hover img {
+       box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+       transform: scale(1.02);
+   }
+
+   .certificateSlide h2 {
+       font-size: 22px;
+       margin: 15px 0 5px;
+       color: #2c3e50;
+       font-weight: 600;
+   }
+
+   .certificateSlide p {
+       font-size: 16px;
+       color: #7f8c8d;
+       margin-top: 5px;
+   }
+
+
+   /* Dots indicator */
+   .dots {
+       text-align: center;
+       margin-top: 20px;
+   }
+
+   .dot {
+       display: inline-block;
+       width: 12px;
+       height: 12px;
+       border-radius: 50%;
+       background-color: #bdc3c7;
+       margin: 0 5px;
+       cursor: pointer;
+       transition: background-color 0.3s ease;
+   }
+
+   .dot.active {
+       background-color: #3498db;
+   }
+
+   /* Responsive adjustments */
+   @media (max-width: 768px) {
+       .content h3 {
+           font-size: clamp(1em, 8vw, 2em);
+       }
+
+       .bef,
+       .aft {
+           width: 40px;
+           height: 40px;
+           font-size: 18px;
+       }
+
+       .certificateSlide h2 {
+           font-size: 20px;
+       }
+
+       .certificateSlide p {
+           font-size: 14px;
+       }
+   }
+
+   /* Animation for slide content
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        } */
+
+   .certificateSlide:nth-child(1) {
+       animation: fadeIn 0.6s 0.1s both;
+   }
+
+   .certificateSlide:nth-child(2) {
+       animation: fadeIn 0.6s 0.2s both;
+   }
+
+   .certificateSlide:nth-child(3) {
+       animation: fadeIn 0.6s 0.3s both;
+   }
+
+   .certificateSlide:nth-child(4) {
+       animation: fadeIn 0.6s 0.4s both;
+   }
+
+   .certificateSlide:nth-child(5) {
+       animation: fadeIn 0.6s 0.5s both;
+   }
+
+   .certificateSlide:nth-child(6) {
+       animation: fadeIn 0.6s 0.6s both;
+   }
+
+
+
+   /* -----------------------------FOOTER CONTENT---------------------------- */
+   /* --- General Footer Base Styles --- */
+   .site-footer {
+       background-color: #2c3e50;
+       /* Dark blue-gray, professional look */
+       color: #ecf0f1;
+       /* Light text for contrast */
+       padding-block: 40px;
+       /* Ample padding top/bottom and sides */
+       font-family: 'Arial', sans-serif;
+       /* A common, readable font */
+       text-align: center;
+       /* Center content horizontally */
+       box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+       /* Subtle shadow at the top */
+       width: 100%;
+   }
+
+   /* --- Footer Navigation Styling --- */
+   .footer-nav {
+       margin-bottom: 30px;
+       /* Space between nav and other footer content */
+       width: 100%;
+   }
+
+   .footer-nav-list {
+       list-style: none;
+       /* Remove bullet points */
+       padding: 0;
+       /* Remove default padding */
+       margin: 0;
+       /* Remove default margin */
+       display: flex;
+       /* Enable Flexbox for horizontal layout */
+       flex-wrap: wrap;
+       /* Allow items to wrap to the next line */
+       justify-content: center;
+       /* Center navigation items */
+       gap: 25px;
+       /* Space between navigation items */
+       padding-bottom: 20px;
+       width: 100%;
+   }
+
+   .footer-nav-list li a {
+       text-decoration: none;
+       /* Remove underline from links */
+       color: #ecf0f1;
+       /* Link color (light) */
+       font-size: 1.05rem;
+       /* Slightly larger font size for readability */
+       font-weight: 500;
+       /* Medium font weight */
+       padding: 8px 15px;
+       /* Padding around link text for better click area */
+       border-radius: 4px;
+       /* Slightly rounded corners */
+       transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+       /* Smooth transitions */
+   }
+
+   .footer-nav-list li a:hover,
+   .footer-nav-list li a:focus {
+       background-color: #34495e;
+       /* Slightly darker background on hover/focus */
+       color: #ffffff;
+       /* Pure white text on hover */
+       transform: translateY(-2px);
+       /* Slight lift effect on hover */
+       outline: none;
+       /* Remove default outline for better custom focus styles */
+   }
+
+   /* --- Footer Bottom Section (Copyright, Social Links, etc.) --- */
+   .footer-bottom {
+       margin-top: 20px;
+       font-size: 0.9rem;
+       color: #bdc3c7;
+       /* Lighter color for copyright text */
+       padding-bottom: 20px;
+   }
+
+   .footer-bottom p {
+       margin: 0;
+       /* Remove default paragraph margin */
+   }
+
+   /*
+.social-links {
+    margin-top: 15px;
+}
+
+.social-links a {
+    color: #ecf0f1;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    color: #3498db; // A nice blue for social hover
+    transform: translateY(-3px);
+}
+*/
+
+   /* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .footer-nav-list {
+        flex-direction: row;
+        /* Stack items vertically on medium screens */
+        gap: 40px;
+        /* Adjust gap for vertical stacking */
+    }
+
+    .footer-nav-list li a {
+        display: block;
+        /* Make links block-level for full-width click area */
+        padding: 10px 0;
+        /* Adjust padding for block links */
+    }
+
+    .site-footer {
+        padding-block: 15px;
+        /* Reduce padding on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .site-footer {
+        padding: 25px 10px;
+        /* Further reduce padding on very small screens */
+    }
+
+    .footer-nav-list li a {
+        font-size: 0.95rem;
+        /* Slightly smaller font for very small screens */
+    }
+
+    .footer-bottom {
+        font-size: 0.85rem;
+    }
+}
+
+
+/* //mobile width */
+
+@media screen and (max-width: 760px) {
+    
+    nav.navBar {
+        right: 20px;
+        left: unset;
+        transform: unset;
+    }
+
+    .navList {
+        flex-direction: column;
+        width: 0;
+        height: 0;
+        transition: width .3s ease, height .3s ease;
+        overflow: hidden;
+    }
+
+    .navBar.active .navList {
+        height: calc(100vh - 30px);
+        width: 80vw;
+    }
+
+    .navBar .mobileBtn {
+        display: flex;
+    }
+
+    .navBar.active .navList li {
+        animation: listAni 1s ease;
+    }
+
+    @keyframes listAni {
+        0% {
+            transform: translateY(-100px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    .navList::before {
+        left: unset;
+        top: var(--top);
+        width: calc(var(--width) + 60px);
+        transform: translateY(5px);
+        transition: top .2s cubic-bezier(0.5, 1, .5, 1.1), width .2s ease;
+    }
+
+    .aboutCard .image {
+        max-width: 100%;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .content h4.name {
+        font-size: 1.2em
+    }
+
+
+    .careerContent .cardTitle {
+        font-size: 2em;
+    }
+    .careerContent .subTitle {
+    font-size: 1.5em;
+    }
+    .careerContent .cardContent:nth-child(3) {
+    left: calc(70% + 180px);
+}
+.careerContent .cardContent .cardDetails {
+    padding-inline: 50px;
+}
+}
+
